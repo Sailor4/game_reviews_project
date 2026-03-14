@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from games.models import Game
 from reviews.models import Review
+from django.utils import timezone
 
 
 def index(request):
@@ -9,6 +10,7 @@ def index(request):
     context = {
         'games_count': games_count,
         'reviews_count': reviews_count,
+        'current_time': timezone.now(),
     }
 
     return render(request, 'common/index.html', context)
