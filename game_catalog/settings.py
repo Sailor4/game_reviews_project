@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 # My apps
 
     'common',
+    'games' ,
+    'reviews' ,
 ]
 
 MIDDLEWARE = [
@@ -78,8 +80,12 @@ WSGI_APPLICATION = 'game_catalog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'game_reviews_db',
+        'USER': 'postgres',
+        'PASSWORD': 'parolata',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
