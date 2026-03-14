@@ -39,7 +39,8 @@
     <hr>
 
     <footer>
-        <p>Current Day: March 14, 2026</p>
+        <p>Current Day: {{ current_time|date:"F j, Y" }}</p>
+        <p>Server Time: {{ current_time|date:"H:i" }} (Sofia)</p>
     </footer>
 </body>
 </html>
