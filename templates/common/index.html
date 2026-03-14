@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
+
     <nav>
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'index' %}">Home</a> |
+    <a href="{% url 'add_review' %}">Add Review</a> |
+    <a href="{% url 'about' %}">About</a> |
+    <a href="{% url 'contact' %}">Contact</a>
     </nav>
 
     <div class="content">
@@ -37,7 +39,7 @@
     <hr>
 
     <footer>
-        <p>Project Started: March 13, 2026 | Current Day: March 14, 2026</p>
+        <p>Current Day: March 14, 2026</p>
     </footer>
 </body>
 </html>

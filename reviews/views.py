@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ReviewForm
 
-# Create your views here.
+
+def add_review(request):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = ReviewForm()
+
+    return render(request, 'reviews/add_review.html', {'form': form})
