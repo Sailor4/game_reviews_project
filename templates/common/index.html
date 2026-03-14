@@ -1,24 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Game Reviews</title>
+    <title>Game Reviews - Home</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <h1>Welcome to the Game Reviews Project!</h1>
-    <p>This is the home page where you can see the latest stats of our catalog.</p>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
 
-    <hr> <h2>Catalog Summary</h2>
-    <ul>
-        <li><strong>Total Games:</strong> {{ games_count }}</li>
-        <li><strong>Total Reviews:</strong> {{ reviews_count }}</li>
-    </ul>
+    <div class="content">
+        <h1>Welcome to the Game Reviews Project!</h1>
+        <p>Your portal for Console and PC game insights.</p>
 
-    {% if games_count == 0 %}
-        <p><em>The catalog is currently empty. Go to Admin to add some games!</em></p>
-    {% else %}
-        <p>We have a great selection of games waiting for you!</p>
-    {% endif %}
+        <hr>
+
+        <div class="stats-box">
+            <h2>Catalog Summary</h2>
+            <ul>
+                <li><strong>Total Games:</strong> {{ games_count }}</li>
+                <li><strong>Total Reviews:</strong> {{ reviews_count }}</li>
+            </ul>
+
+            {% if games_count == 0 %}
+                <p><em>The catalog is currently empty. Go to Admin to add some games!</em></p>
+            {% else %}
+                <p>We have a great selection of games waiting for you!</p>
+            {% endif %}
+        </div>
+    </div>
 
     <hr>
 

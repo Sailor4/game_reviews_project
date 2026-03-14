@@ -1,0 +1,26 @@
+body {
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    line-height: 1.6;
+}
+
+h1 { color: #00d4ff; }
+h2, h3 { color: #ff007c; }
+
+a {
+    color: #ffd700;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+a:hover { text-decoration: underline; }
+
+.stats-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #00d4ff;
+}
