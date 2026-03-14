@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ReviewForm
+from django.utils import timezone
 
 
 def add_review(request):
@@ -11,4 +12,4 @@ def add_review(request):
     else:
         form = ReviewForm()
 
-    return render(request, 'reviews/add_review.html', {'form': form})
+    return render(request, 'reviews/add_review.html', {'form': form,'server_time': timezone.now()})

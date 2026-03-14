@@ -16,6 +16,11 @@
 
     <div class="content">
         <h1>Submit a New Review</h1>
+
+        <div class="time-hud">
+            LOCAL TIME: <span id="local-clock">{% now "H:i" %}</span>
+        </div>
+
         <div class="stats-box">
             <form method="POST">
                 {% csrf_token %} {{ form.as_p }}
@@ -23,5 +28,16 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function setLocalTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('local-clock').textContent = `${hours}:${minutes}`;
+        }
+        setLocalTime();
+    </script>
+
 </body>
 </html>

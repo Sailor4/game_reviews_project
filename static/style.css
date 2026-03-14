@@ -54,3 +54,15 @@ input, textarea, select {
     background: #1e1e2f;
     color: white;
 }
+
+.time-hud {
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffd700;
+    padding: 10px 20px;
+    border-left: 4px solid #ffd700;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    display: inline-block;
+    letter-spacing: 1px;
+}
