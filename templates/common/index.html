@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Game Reviews</title>
 </head>
 <body>
     <h1>Welcome to the Game Reviews Project!</h1>
-    <p>This is the home page.</p>
+    <p>This is the home page where you can see the latest stats of our catalog.</p>
+
+    <hr> <h2>Catalog Summary</h2>
+    <ul>
+        <li><strong>Total Games:</strong> {{ games_count }}</li>
+        <li><strong>Total Reviews:</strong> {{ reviews_count }}</li>
+    </ul>
+
+    {% if games_count == 0 %}
+        <p><em>The catalog is currently empty. Go to Admin to add some games!</em></p>
+    {% else %}
+        <p>We have a great selection of games waiting for you!</p>
+    {% endif %}
+
+    <hr>
+
+    <footer>
+        <p>Project Started: March 13, 2026 | Current Day: March 14, 2026</p>
+    </footer>
 </body>
 </html>
