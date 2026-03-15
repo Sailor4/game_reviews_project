@@ -25,6 +25,11 @@
                     <p><strong>Platform:</strong> {{ game.platform }}</p>
                     <p><strong>Genre:</strong> {{ game.genre }}</p>
                     <p>{{ game.description|truncatewords:20 }}</p>
+                    <div style="margin-top: 15px;">
+                        <a href="{% url 'add_review' %}" class="submit-btn" style="text-decoration: none; font-size: 0.9rem;">
+                            Write a Review
+                        </a>
+                    </div>
                 </div>
             {% empty %}
                 <p>No games in the catalog yet. Add some via the Admin!</p>
