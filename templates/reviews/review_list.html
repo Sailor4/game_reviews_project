@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Reviews</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'game_catalog' %}">Browse Games</a>
+        <a href="{% url 'review_list' %}">Reviews</a>
+        <a href="{% url 'add_review' %}">Add Review</a>
+        <a href="{% url 'about' %}">About</a>
+    </nav>
+
+    <h1>Community Reviews</h1>
+
+    <div class="review-grid">
+        {% for review in reviews %}
+            <div class="stats-box" style="margin-bottom: 20px;">
+                <h3>{{ review.game.title }}</h3>
+                <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                <p>"{{ review.content }}"</p>
+                <small>By {{ review.reviewer_name }} on {{ review.created_at|date:"M d, Y" }}</small>
+            </div>
+        {% empty %}
+            <p>No reviews yet. Be the first to write one!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

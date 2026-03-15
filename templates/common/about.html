@@ -8,14 +8,15 @@
 </head>
 <body>
     <nav>
-    <a href="{% url 'index' %}">Home</a> |
-    <a href="{% url 'add_review' %}">Add Review</a> |
-    <a href="{% url 'about' %}">About</a> |
-    <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'game_catalog' %}">Browse Games</a>
+        <a href="{% url 'review_list' %}">Reviews</a>
+        <a href="{% url 'add_review' %}">Add Review</a>
+        <a href="{% url 'about' %}">About</a>
     </nav>
 
     <h1>About This Project</h1>
-    <p>This is a Django-based game review</p>
-    <p>It features a PostgreSQL database and custom model validation.</p>
+        <p>This is a Django-based game review</p>
+        <p>It features a PostgreSQL database and custom model validation.</p>
 </body>
 </html>

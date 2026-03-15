@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Catalog</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'game_catalog' %}">Browse Games</a>
+        <a href="{% url 'review_list' %}">Reviews</a>
+        <a href="{% url 'add_review' %}">Add Review</a>
+        <a href="{% url 'about' %}">About</a>
+    </nav>
+
+    <div class="content">
+        <h1>Available Games</h1>
+
+        <div class="game-grid">
+            {% for game in games %}
+                <div class="stats-box" style="border-left: 5px solid #ff007c;">
+                    <h2>{{ game.title }}</h2>
+                    <p><strong>Platform:</strong> {{ game.platform }}</p>
+                    <p><strong>Genre:</strong> {{ game.genre }}</p>
+                    <p>{{ game.description|truncatewords:20 }}</p>
+                </div>
+            {% empty %}
+                <p>No games in the catalog yet. Add some via the Admin!</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
