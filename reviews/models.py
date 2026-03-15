@@ -25,7 +25,7 @@ class Review(models.Model):
         help_text=f"Review must be between {CONTENT_MIN_LENGTH} and {CONTENT_MAX_LENGTH} characters."
     )
 
-    rating = models.IntegerField(
+    rating = models.FloatField(
         validators=[
             MinValueValidator(RATING_MIN),
             MaxValueValidator(RATING_MAX)

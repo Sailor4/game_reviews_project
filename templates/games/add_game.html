@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Us</title>
+    <title>Add Game</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -16,8 +16,15 @@
         <a href="{% url 'about' %}">About</a>
     </nav>
 
-    <h1>About This Project</h1>
-        <p>This is a Django-based game review</p>
-        <p>It features a PostgreSQL database and custom model validation.</p>
+    <div class="content">
+        <h1>Register a New Game</h1>
+
+        <div class="stats-box">
+            <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit" class="submit-btn">Save Game</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
