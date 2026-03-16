@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Game - {{ game.title }}</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'game_catalog' %}">Browse Games</a>
+    </nav>
+
+    <div style="max-width: 600px; margin: 50px auto; text-align: center; border: 2px solid red; padding: 20px; border-radius: 10px;">
+        <h1 style="color: #d9534f;">Delete Game: {{ game.title }}</h1>
+        <p style="background-color: #f8d7da; padding: 10px;">
+            <strong>WARNING:</strong> Deleting this game will also permanently delete
+            <strong>all reviews</strong> written for it.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #d9534f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                Yes, Delete Everything
+            </button>
+            <a href="{% url 'game_catalog' %}" style="margin-left: 15px; text-decoration: none; color: #555;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -62,4 +62,4 @@ class Game(models.Model):
         return "Not Rated Yet"
 
     def __str__(self):
-        return self.title
+        return f"{self.title} [{self.platform}]"

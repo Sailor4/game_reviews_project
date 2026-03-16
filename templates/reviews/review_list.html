@@ -22,13 +22,15 @@
         {% for review in reviews %}
             <div class="stats-box" style="margin-bottom: 20px;">
                 <h3>{{ review.game.title }}</h3>
-                <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                <p><strong>Rating:</strong> {{ review.rating|floatformat:"-1" }} / 10</p>
                 <p>"{{ review.content }}"</p>
                 <small>By {{ review.reviewer_name }} on {{ review.created_at|date:"M d, Y" }}</small>
+                <a href="{% url 'delete_review' review.pk %}" style="color: red;">Delete Review</a>
             </div>
         {% empty %}
             <p>No reviews yet. Be the first to write one!</p>
         {% endfor %}
+
     </div>
 </body>
 </html>

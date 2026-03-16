@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Game
 from .forms import GameForm
 
@@ -17,3 +17,13 @@ def add_game(request):
         form = GameForm()
 
     return render(request, 'games/add_game.html', {'form': form})
+
+
+def delete_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+
+    if request.method == 'POST':
+        game.delete()
+        return redirect('game_catalog')
+
+    return render(request, 'games/delete_game.html', {'game': game})

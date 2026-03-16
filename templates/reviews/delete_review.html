@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Review - GameVault</title>
+    </head>
+<body>
+
+
+    <div style="max-width: 600px; margin: 50px auto; text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
+        <h1 style="color: #d9534f;">Confirm Deletion</h1>
+        <p>Are you sure you want to delete the review for <strong>{{ review.game.title }}</strong>?</p>
+        <p><em>"{{ review.content|truncatechars:50 }}"</em></p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #d9534f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                Yes, Delete Permanently
+            </button>
+            <a href="{% url 'game_catalog' %}" style="margin-left: 15px; text-decoration: none; color: #555;">Cancel and Go Back</a>
+        </form>
+    </div>
+</body>
+</html>
