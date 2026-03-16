@@ -30,6 +30,10 @@
                 <li><strong>Total Reviews:</strong> {{ reviews_count }}</li>
             </ul>
 
+            <a href="{% url 'game_catalog' %}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+                View All Games
+            </a>
+
             {% if games_count == 0 %}
                 <p><em>The catalog is currently empty. Go to Admin to add some games!</em></p>
             {% else %}

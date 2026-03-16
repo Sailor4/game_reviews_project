@@ -2,14 +2,14 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
 from django.db.models.aggregates import Avg
 
-TITLE_MAX_LENGTH = 30
+TITLE_MAX_LENGTH = 40
 GENRE_MAX_LENGTH = 20
 RATING_MIN_VALUE = 1
 RATING_MAX_VALUE = 10.0
 MIN_YEAR_CREATED = 1950
 MAX_YEAR_CREATED = 2026
-MIN_DESCRIPTION_LENGTH = 10
-MAX_DESCRIPTION_LENGTH = 250
+MIN_DESCRIPTION_LENGTH = 5
+MAX_DESCRIPTION_LENGTH = 800
 
 
 class Game(models.Model):
