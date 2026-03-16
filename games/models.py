@@ -19,8 +19,7 @@ class Game(models.Model):
     )
 
     title = models.CharField(
-        max_length=TITLE_MAX_LENGTH,
-        unique=True
+        max_length=TITLE_MAX_LENGTH
     )
 
     platform = models.CharField(
@@ -52,11 +51,10 @@ class Game(models.Model):
         validators=[MinValueValidator(1.0), MaxValueValidator(10.0)]
     )
 
-    image_url = models.URLField()
+    class Meta:
+        unique_together = ("title", "platform")
 
-    summary = models.TextField(blank=True, null=True)
-
-    def get_calculated_rating(self):
+    def get_calculated_rating(self): # work in progress, might not get finished till deadline :))
         average = self.review_set.aggregate(Avg('rating'))['rating__avg']
 
         if average:
