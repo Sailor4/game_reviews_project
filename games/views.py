@@ -27,3 +27,17 @@ def delete_game(request, pk):
         return redirect('game_catalog')
 
     return render(request, 'games/delete_game.html', {'game': game})
+
+
+def edit_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+
+    if request.method == 'POST':
+        form = GameForm(request.POST, instance=game)
+        if form.is_valid():
+            form.save()
+            return redirect('game_catalog')
+    else:
+        form = GameForm(instance=game)
+
+    return render(request, 'games/edit_game.html', {'form': form, 'game': game})

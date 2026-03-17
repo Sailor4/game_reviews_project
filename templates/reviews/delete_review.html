@@ -4,22 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete Review - GameVault</title>
-    </head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
 <body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'game_catalog' %}">Browse Games</a>
+        <a href="{% url 'add_game' %}">Add Game</a>
+        <a href="{% url 'review_list' %}">Reviews</a>
+        <a href="{% url 'add_review' %}">Add Review</a>
+        <a href="{% url 'about' %}">About</a>
+    </nav>
 
+    <div class="content">
+        <h1 style="color: #ff007c;">Confirm Deletion</h1>
 
-    <div style="max-width: 600px; margin: 50px auto; text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
-        <h1 style="color: #d9534f;">Confirm Deletion</h1>
-        <p>Are you sure you want to delete the review for <strong>{{ review.game.title }}</strong>?</p>
-        <p><em>"{{ review.content|truncatechars:50 }}"</em></p>
+        <div class="stats-box" style="border-left: 5px solid #ff007c;">
+            <h2>Remove Review Data?</h2>
 
-        <form method="POST">
-            {% csrf_token %}
-            <button type="submit" style="background-color: #d9534f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                Yes, Delete Permanently
-            </button>
-            <a href="{% url 'game_catalog' %}" style="margin-left: 15px; text-decoration: none; color: #555;">Cancel and Go Back</a>
-        </form>
+            <p>You are about to permanently delete the review for <strong>{{ review.game.title }}</strong>.</p>
+
+            <div class="time-hud" style="color: #ffd700; border-color: #ffd700; display: block; margin: 20px 0; font-style: italic;">
+                "{{ review.content|truncatechars:80 }}"
+            </div>
+
+            <form method="POST" style="margin-top: 30px;">
+                {% csrf_token %}
+                <button type="submit" class="submit-btn">
+                    YES, DELETE PERMANENTLY
+                </button>
+                <a href="{% url 'game_catalog' %}" style="margin-left: 20px; color: #ffd700;">CANCEL</a>
+            </form>
+        </div>
     </div>
 </body>
 </html>

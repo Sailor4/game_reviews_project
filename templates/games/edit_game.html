@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Game - {{ game.title }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'game_catalog' %}">Browse Games</a>
+        <a href="{% url 'add_game' %}">Add Game</a>
+        <a href="{% url 'review_list' %}">Reviews</a>
+        <a href="{% url 'add_review' %}">Add Review</a>
+        <a href="{% url 'about' %}">About</a>
+    </nav>
+
+    <div class="content">
+        <h1>Edit Game: {{ game.title }}</h1>
+
+        <div class="stats-box">
+            <form method="POST">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div style="color: #ff007c; border: 1px solid #ff007c; padding: 10px; margin-bottom: 10px; background: rgba(255, 0, 124, 0.1);">
+                        <strong>Please fix the following:</strong>
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+
+                {{ form.as_p }}
+
+                <div style="margin-top: 20px;">
+                    <button type="submit" class="submit-btn">Update Game Details</button>
+                    <a href="{% url 'game_catalog' %}" style="margin-left: 20px; color: #ffd700;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
