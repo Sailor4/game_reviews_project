@@ -26,6 +26,21 @@ def delete_review(request, pk):
 
     if request.method == 'POST':
         review.delete()
-        return redirect('game_catalog')
+        return redirect('review_list')
 
     return render(request, 'reviews/delete_review.html', {'review': review})
+
+
+def edit_review(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('review_list')
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(request, 'reviews/edit_review.html', {'form': form, 'review': review})
+

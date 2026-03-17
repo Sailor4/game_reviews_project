@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Reviews</title>
+    <title>All Reviews - GameVault</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -16,21 +16,40 @@
         <a href="{% url 'about' %}">About</a>
     </nav>
 
-    <h1>Community Reviews</h1>
+    <div class="content">
+        <h1>Community Reviews</h1>
 
-    <div class="review-grid">
-        {% for review in reviews %}
-            <div class="stats-box" style="margin-bottom: 20px;">
-                <h3>{{ review.game.title }}</h3>
-                <p><strong>Rating:</strong> {{ review.rating|floatformat:"-1" }} / 10</p>
-                <p>"{{ review.content }}"</p>
-                <small>By {{ review.reviewer_name }} on {{ review.created_at|date:"M d, Y" }}</small>
-                <a href="{% url 'delete_review' review.pk %}" style="color: red;">Delete Review</a>
-            </div>
-        {% empty %}
-            <p>No reviews yet. Be the first to write one!</p>
-        {% endfor %}
+        <div class="review-grid">
+            {% for review in reviews %}
+                <div class="stats-box" style="margin-bottom: 25px; padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0;">{{ review.game.title }}</h3>
+                        <span style="color: #ffd700; font-weight: bold;">{{ review.rating|floatformat:"-1" }} / 10</span>
+                    </div>
 
+                    <p style="font-style: italic; margin: 15px 0; color: #eee;">"{{ review.content }}"</p>
+
+                    <div style="margin-bottom: 15px;">
+                        <small style="color: #00d4ff; font-family: 'Courier New', monospace;">
+                            BY: {{ review.reviewer_name|upper }} | {{ review.created_at|date:"M d, Y" }}
+                        </small>
+                    </div>
+
+                    <div style="display: flex; gap: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                        <a href="{% url 'edit_review' review.pk %}" style="color: #ffd700; font-size: 0.9rem; text-decoration: none; border: 1px solid #ffd700; padding: 5px 10px; border-radius: 4px;">
+                            Edit Review
+                        </a>
+                        <a href="{% url 'delete_review' review.pk %}" style="color: #ff007c; font-size: 0.9rem; text-decoration: none; border: 1px solid #ff007c; padding: 5px 10px; border-radius: 4px;">
+                            Delete Review
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="stats-box">
+                    <p>No reviews yet. Be the first to <a href="{% url 'add_review' %}">write one!</a></p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
