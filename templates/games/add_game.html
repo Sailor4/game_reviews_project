@@ -1,43 +1,26 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Game</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <nav>
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'game_catalog' %}">Browse Games</a>
-        <a href="{% url 'add_game' %}">Add Game</a>
-        <a href="{% url 'review_list' %}">Reviews</a>
-        <a href="{% url 'add_review' %}">Add Review</a>
-        <a href="{% url 'community_stats' %}">Stats</a>
-        <a href="{% url 'about' %}">About</a>
-        <form action="{% url 'search_games' %}" method="GET" style="display: inline-block; margin-left: 20px;">
-            <input type="text" name="q" placeholder="Search games..." style="width: 150px; padding: 5px; border-radius: 4px; border: 1px solid #00d4ff; background: #1e1e2f; color: white;">
-            <button type="submit" style="background: #00d4ff; color: #1e1e2f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">GO</button>
-        </form>
-    </nav>
+{% extends 'base.html' %}
 
-    <div class="content">
-        <h1>Register a New Game</h1>
+{% block title %}Add Game - GameVault{% endblock %}
 
-        <div class="stats-box">
+{% block content %}
+    <h1>Register a New Game</h1>
+
+    <div class="stats-box">
         <form method="POST">
             {% csrf_token %}
+
             {% if form.errors %}
-                <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 10px;">
-                    <strong>Please fix the following:</strong>
+                <div style="color: #ff007c; border: 1px solid #ff007c; padding: 15px; margin-bottom: 20px; background: rgba(255, 0, 124, 0.1);">
+                    <strong>System Error: Please fix the following:</strong>
                     {{ form.errors }}
                 </div>
             {% endif %}
 
-            {{ form.as_p }}
-            <button type="submit" class="submit-btn">Save Game</button>
+            <div class="form-container">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="submit-btn" style="margin-top: 20px;">Save Game</button>
         </form>
-        </div>
     </div>
-</body>
-</html>
+{% endblock %}

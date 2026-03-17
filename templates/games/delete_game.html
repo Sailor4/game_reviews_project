@@ -1,46 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete Game - {{ game.title }}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <nav>
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'game_catalog' %}">Browse Games</a>
-        <a href="{% url 'add_game' %}">Add Game</a>
-        <a href="{% url 'review_list' %}">Reviews</a>
-        <a href="{% url 'add_review' %}">Add Review</a>
-        <a href="{% url 'community_stats' %}">Stats</a>
-        <a href="{% url 'about' %}">About</a>
-        <form action="{% url 'search_games' %}" method="GET" style="display: inline-block; margin-left: 20px;">
-            <input type="text" name="q" placeholder="Search games..." style="width: 150px; padding: 5px; border-radius: 4px; border: 1px solid #00d4ff; background: #1e1e2f; color: white;">
-            <button type="submit" style="background: #00d4ff; color: #1e1e2f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">GO</button>
-        </form>
-    </nav>
+{% extends 'base.html' %}
 
-    <div class="content">
-        <h1 style="color: #ff007c;">System Alert: Delete Game</h1>
+{% block title %}Delete Game - {{ game.title }}{% endblock %}
 
-        <div class="stats-box" style="border-left: 5px solid #ff007c; background: rgba(255, 0, 124, 0.05);">
-            <h2>Confirm Deletion of {{ game.title }}?</h2>
+{% block content %}
+    <h1 style="color: #ff007c;">System Alert: Delete Game</h1>
 
-            <div class="time-hud" style="color: #ff007c; border-color: #ff007c; display: block; margin-bottom: 20px;">
-                WARNING: DATABASE CASCADE DETECTED
-            </div>
+    <div class="stats-box" style="border-left: 5px solid #ff007c; background: rgba(255, 0, 124, 0.05);">
+        <h2>Confirm Deletion of {{ game.title }}?</h2>
 
-            <p>Deleting <strong>{{ game.title }}</strong> [{{ game.platform }}] will permanently remove it and <strong>all associated reviews</strong> from the system.</p>
+        <div class="time-hud" style="color: #ff007c; border-color: #ff007c; display: block; margin-bottom: 20px;">
+            WARNING: DATABASE CASCADE DETECTED
+        </div>
 
-            <form method="POST" style="margin-top: 30px;">
-                {% csrf_token %}
-                <button type="submit" class="submit-btn" style="background: #ff007c;">
+        <p>Deleting <strong>{{ game.title }}</strong> [{{ game.platform }}] will permanently remove it and <strong>all associated reviews</strong> from the system.</p>
+
+        <form method="POST" style="margin-top: 30px;">
+            {% csrf_token %}
+
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <button type="submit" class="submit-btn" style="background: #ff007c; margin: 0;">
                     YES, DELETE EVERYTHING
                 </button>
-                <a href="{% url 'game_catalog' %}" style="margin-left: 20px; color: #ffd700;">CANCEL</a>
-            </form>
-        </div>
+
+                <a href="{% url 'game_catalog' %}" style="color: #ffd700; text-decoration: none; font-weight: bold; font-family: 'Courier New', monospace;">
+                    [ CANCEL, BACK TO SAFETY ]
+                </a>
+            </div>
+        </form>
     </div>
-</body>
-</html>
+{% endblock %}

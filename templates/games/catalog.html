@@ -1,57 +1,38 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Game Catalog</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <nav>
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'game_catalog' %}">Browse Games</a>
-        <a href="{% url 'add_game' %}">Add Game</a>
-        <a href="{% url 'review_list' %}">Reviews</a>
-        <a href="{% url 'add_review' %}">Add Review</a>
-        <a href="{% url 'community_stats' %}">Stats</a>
-        <a href="{% url 'about' %}">About</a>
-        <form action="{% url 'search_games' %}" method="GET" style="display: inline-block; margin-left: 20px;">
-            <input type="text" name="q" placeholder="Search games..." style="width: 150px; padding: 5px; border-radius: 4px; border: 1px solid #00d4ff; background: #1e1e2f; color: white;">
-            <button type="submit" style="background: #00d4ff; color: #1e1e2f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">GO</button>
-        </form>
-    </nav>
+{% extends 'base.html' %}
 
-    <div class="content">
-        <h1>Available Games</h1>
+{% block title %}Available Games - GameVault{% endblock %}
 
-        <div class="game-grid">
-            {% for game in games %}
-                <div class="stats-box" style="border-left: 5px solid #ff007c; margin-bottom: 20px; padding: 15px;">
-                    <h2>{{ game.title }}</h2>
-                    <p><strong>Platform:</strong> {{ game.platform }}</p>
-                    <p><strong>Genre:</strong> {{ game.genre }}</p>
-                    <p>{{ game.description|truncatewords:20 }}</p>
+{% block content %}
+    <h1>Available Games</h1>
 
-                    <div style="margin-top: 20px; display: flex; align-items: center; gap: 25px;">
+    <div class="game-grid">
+        {% for game in games %}
+            <div class="stats-box" style="border-left: 5px solid #ff007c; margin-bottom: 20px; padding: 15px;">
+                <h2>{{ game.title }}</h2>
+                <p><strong>Platform:</strong> {{ game.platform }}</p>
+                <p><strong>Genre:</strong> {{ game.genre }}</p>
+                <p>{{ game.description|truncatewords:20 }}</p>
 
-                        <a href="{% url 'add_review' %}" class="submit-btn" style="text-decoration: none; font-size: 0.9rem; margin: 0;">
-                            Write a Review
-                        </a>
+                <div style="margin-top: 20px; display: flex; align-items: center; gap: 25px;">
 
-                        <a href="{% url 'delete_game' game.pk %}" style="color: #d9534f; font-size: 0.85em; text-decoration: none; font-weight: bold;">
-                            Delete Game
-                        </a>
+                    <a href="{% url 'add_review' %}" class="submit-btn" style="text-decoration: none; font-size: 0.9rem; margin: 0;">
+                        Write a Review
+                    </a>
 
-                        <a href="{% url 'edit_game' game.pk %}" style="color: #007bff; font-size: 0.85em; text-decoration: none; font-weight: bold;">
-                            Edit Game
-                        </a>
+                    <a href="{% url 'delete_game' game.pk %}" style="color: #ff007c; font-size: 0.85em; text-decoration: none; font-weight: bold;">
+                        DELETE
+                    </a>
 
-                    </div>
+                    <a href="{% url 'edit_game' game.pk %}" style="color: #00d4ff; font-size: 0.85em; text-decoration: none; font-weight: bold;">
+                        EDIT
+                    </a>
+
                 </div>
-            {% empty %}
-                <p>No games in the catalog yet. <a href="{% url 'add_game' %}">Add one now!</a></p>
-            {% endfor %}
-        </div>
+            </div>
+        {% empty %}
+            <div class="stats-box">
+                <p>No games in the catalog yet. <a href="{% url 'add_game' %}" style="color: #00d4ff;">Add one now!</a></p>
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}

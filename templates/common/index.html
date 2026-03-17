@@ -1,57 +1,43 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Game Reviews - Home</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <nav>
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'game_catalog' %}">Browse Games</a>
-        <a href="{% url 'add_game' %}">Add Game</a>
-        <a href="{% url 'review_list' %}">Reviews</a>
-        <a href="{% url 'add_review' %}">Add Review</a>
-        <a href="{% url 'community_stats' %}">Stats</a>
-        <a href="{% url 'about' %}">About</a>
-        <form action="{% url 'search_games' %}" method="GET" style="display: inline-block; margin-left: 20px;">
-            <input type="text" name="q" placeholder="Search games..." style="width: 150px; padding: 5px; border-radius: 4px; border: 1px solid #00d4ff; background: #1e1e2f; color: white;">
-            <button type="submit" style="background: #00d4ff; color: #1e1e2f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">GO</button>
-        </form>
-    </nav>
+{% block title %}Home - GameVault{% endblock %}
 
-    <div class="content">
-        <h1>Welcome to the Game Reviews Project!</h1>
-        <p>Your portal for Console and PC game insights.</p>
+{% block content %}
+    <h1>Welcome to the Game Reviews Project!</h1>
+    <p>Your portal for Console and PC game insights.</p>
 
-        <hr>
+    <div class="stats-box">
+        <h2>Catalog Summary</h2>
+        <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+            <li style="margin-bottom: 10px;"><strong>Total Games:</strong> {{ games_count }}</li>
+            <li><strong>Total Reviews:</strong> {{ reviews_count }}</li>
+        </ul>
 
-        <div class="stats-box">
-            <h2>Catalog Summary</h2>
-            <ul>
-                <li><strong>Total Games:</strong> {{ games_count }}</li>
-                <li><strong>Total Reviews:</strong> {{ reviews_count }}</li>
-            </ul>
-
-            <a href="{% url 'game_catalog' %}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
-                View All Games
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-start;">
+            <a href="{% url 'game_catalog' %}" class="submit-btn" style="text-decoration: none; width: 160px; text-align: center;">
+                View Games
             </a>
 
+            <a href="{% url 'review_list' %}" class="submit-btn" style="text-decoration: none; width: 160px; text-align: center; background: #00d4ff; color: #1e1e2f;">
+                View Reviews
+            </a>
+
+            <a href="{% url 'community_stats' %}" class="submit-btn" style="text-decoration: none; width: 160px; text-align: center; background: #ffd700; color: #1e1e2f;">
+                View Stats
+            </a>
+        </div>
+
+        <div style="margin-top: 20px;">
             {% if games_count == 0 %}
-                <p><em>The catalog is currently empty. Go to Admin to add some games!</em></p>
+                <p><em>The catalog is currently empty. Start by adding some games!</em></p>
             {% else %}
                 <p>We have a great selection of games waiting for you!</p>
             {% endif %}
         </div>
     </div>
 
-    <hr>
-
-    <footer>
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.6;">
         <p>Current Day: {{ current_time|date:"F j, Y" }}</p>
         <p>Server Time: {{ current_time|date:"H:i" }} (Sofia)</p>
-    </footer>
-</body>
-</html>
+    </div>
+{% endblock %}

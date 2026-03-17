@@ -1,28 +1,12 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About Us</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <nav>
-        <a href="{% url 'index' %}">Home</a>
-        <a href="{% url 'game_catalog' %}">Browse Games</a>
-        <a href="{% url 'add_game' %}">Add Game</a>
-        <a href="{% url 'review_list' %}">Reviews</a>
-        <a href="{% url 'add_review' %}">Add Review</a>
-        <a href="{% url 'community_stats' %}">Stats</a>
-        <a href="{% url 'about' %}">About</a>
-        <form action="{% url 'search_games' %}" method="GET" style="display: inline-block; margin-left: 20px;">
-            <input type="text" name="q" placeholder="Search games..." style="width: 150px; padding: 5px; border-radius: 4px; border: 1px solid #00d4ff; background: #1e1e2f; color: white;">
-            <button type="submit" style="background: #00d4ff; color: #1e1e2f; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">GO</button>
-        </form>
-    </nav>
+{% extends 'base.html' %}
 
+{% block title %}About - GameVault{% endblock %}
+
+{% block content %}
     <h1>About This Project</h1>
-        <p>This is a Django-based game review</p>
-        <p>It features a PostgreSQL database and custom model validation.</p>
-</body>
-</html>
+    <div class="stats-box">
+        <p>This is a Django-based game review platform designed to showcase full CRUD functionality and relational database management.</p>
+        <p><strong>Tech Stack:</strong> Django, PostgreSQL, and Neon-Cyberpunk CSS.</p>
+        <p>It features custom model validation, dynamic search, and automated community statistics.</p>
+    </div>
+{% endblock %}
